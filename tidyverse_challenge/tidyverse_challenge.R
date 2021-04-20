@@ -4,6 +4,7 @@
 # 1.0 Load libraries ----
 library(tidyverse)
 library(readxl)
+library(lubridate)
 
 
 # 2.0 Importing Files ----
@@ -107,7 +108,7 @@ sales_by_year_tbl%>%
 sales_by_year_state_tbl<-bike_orderlines_wrangled_tblcity%>%
   #Select columns and add a year
   select(order_date, total_price, State)%>%
-  mutate(year = order_date)%>%
+  mutate(year = year(order_date))%>%
   
   #Group by and summarize year and main category
   group_by(year, State)%>%
